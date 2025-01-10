@@ -140,7 +140,7 @@
         .button {
             display: block;
             width: max-content;
-            margin: 20px ;
+            margin: 20px auto;
             padding: 8px 16px;
             background: hsl(180, 86%, 45%);
             color: white;
@@ -151,9 +151,6 @@
             font-weight: bold;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: background 0.3s ease;
-            width: 90%;
-            margin-left: 0;
-            margin-right: 0;
         }
 
         .button:hover {
@@ -168,6 +165,54 @@
             margin-top: 40px;
             height: 50px;
             width: auto;
+        }
+
+        @media screen and (max-width: 1024px) {
+            .film-container {
+                grid-template-columns: repeat(3, minmax(150px, 1fr));
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .navbar ul {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .film-container {
+                grid-template-columns: repeat(2, minmax(150px, 1fr));
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .navbar ul {
+                display: none;
+            }
+
+            .navbar {
+                flex-wrap: wrap;
+            }
+
+            .film-container {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .film-info h3, .film-info p {
+                font-size: 0.6rem;
+            }
+
+            .button {
+                width: 100%;
+                margin: 0;
+            }
         }
     </style>
 </head>
