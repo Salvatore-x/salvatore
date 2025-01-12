@@ -7,11 +7,16 @@
     <title>Welcome to Nkiri P.</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        * {
+            box-sizing: border-box; /* Ensure padding doesn't affect dimensions */
+        }
+
         body {
             margin: 0;
             padding: 0;
             font-family: 'Roboto', sans-serif;
             background-color: #f9f9f9;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
 
         .navbar {
@@ -20,7 +25,7 @@
             align-items: center;
             background-color: #333;
             color: white;
-            padding: 10px 20px;
+            padding: 2% 5%;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -34,6 +39,21 @@
             font-weight: bold;
         }
 
+        .menu-button {
+            display: none;
+            background-color: #444;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .menu-button:focus {
+            outline: none;
+        }
+
         .navbar ul {
             list-style: none;
             display: flex;
@@ -42,7 +62,7 @@
         }
 
         .navbar li {
-            margin: 0 15px;
+            margin: 0 3%;
             position: relative;
         }
 
@@ -74,7 +94,7 @@
 
         .dropdown li {
             margin: 0;
-            padding: 10px;
+            padding: 10%;
         }
 
         .dropdown li a {
@@ -86,21 +106,21 @@
         }
 
         .content {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
+            max-width: 100%;
+            margin: 2% auto;
+            padding: 5%;
         }
 
         .section-title {
             font-size: 1.8rem;
             color: #333;
-            margin-bottom: 20px;
+            margin-bottom: 2%;
         }
 
         .film-container {
             display: grid;
-            grid-template-columns: repeat(6, minmax(150px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 2%;
             width: 100%;
         }
 
@@ -113,7 +133,7 @@
         }
 
         .film:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5%);
         }
 
         .film img {
@@ -122,26 +142,26 @@
         }
 
         .film-info {
-            padding: 8px;
+            padding: 5%;
             text-align: left;
         }
 
         .film-info h3 {
-            font-size: 0.7rem;
-            margin: 5px 0;
+            font-size: 0.9rem;
+            margin: 5% 0;
             color: #333;
         }
 
         .film-info p {
             color: #777;
-            font-size: 0.7rem;
+            font-size: 0.8rem;
         }
 
         .button {
             display: block;
-            width: max-content;
-            margin: 20px auto;
-            padding: 8px 16px;
+            width: 90%;
+            margin: 5% auto;
+            padding: 2% 5%;
             background: hsl(180, 86%, 45%);
             color: white;
             text-transform: uppercase;
@@ -161,44 +181,70 @@
             background: #333;
             color: white;
             text-align: center;
-            padding: 10px 0;
-            margin-top: 40px;
-            height: 50px;
-            width: auto;
+            padding: 2%;
+            margin-top: 4%;
+            height: auto;
+            width: 100%;
         }
 
         @media screen and (max-width: 1024px) {
             .film-container {
-                grid-template-columns: repeat(3, minmax(150px, 1fr));
+                grid-template-columns: repeat(3, 1fr);
+                gap: 5%;
             }
         }
 
         @media screen and (max-width: 768px) {
+            .menu-button {
+                display: block;
+            }
+
             .navbar ul {
+                display: none;
                 flex-direction: column;
                 align-items: flex-start;
+                background: #333;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                padding: 0;
+                margin: 0;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
+
+            .navbar ul.active {
+                display: flex;
             }
 
             .film-container {
-                grid-template-columns: repeat(2, minmax(150px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
+                gap: 5%;
             }
 
             .section-title {
                 font-size: 1.5rem;
             }
+
+            .navbar li {
+                width: 100%;
+                margin: 0;
+            }
+
+            .navbar li a {
+                display: block;
+                padding: 10px 15px;
+                width: 100%;
+                color: white;
+                border-bottom: 1px solid #444;
+            }
         }
 
         @media screen and (max-width: 480px) {
-            .navbar ul {
-                display: none;
-            }
-
-            .navbar {
-                flex-wrap: wrap;
-            }
-
             .film-container {
                 grid-template-columns: 1fr;
+                gap: 10%;
             }
 
             .section-title {
@@ -206,12 +252,20 @@
             }
 
             .film-info h3, .film-info p {
-                font-size: 0.6rem;
+                font-size: 0.7rem;
             }
 
             .button {
                 width: 100%;
                 margin: 0;
+            }
+
+            .navbar li a {
+                font-size: 0.8rem;
+            }
+
+            .navbar {
+                padding: 5%;
             }
         }
     </style>
@@ -219,6 +273,7 @@
 <body>
     <nav class="navbar">
         <div class="logo"><a href="#">Nkiri</a></div>
+        <button class="menu-button" onclick="toggleMenu()">Menu</button>
         <ul>
             <li><a href="#">Home</a></li>
             <li><a href="#">Chinese Drama</a></li>
@@ -254,6 +309,13 @@
             <li><a href="#">How to Download</a></li>
         </ul>
     </nav>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.navbar ul');
+            menu.classList.toggle('active');
+        }
+    </script>
 
     <div class="content">
         <h2 class="section-title">Search for what to Download here</h2>
